@@ -4,21 +4,24 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Text
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import com.lemondog.simpleplayer.R
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
+
+    private val viewModel by viewModels<HomeFragmentViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -29,8 +32,8 @@ class HomeFragment : Fragment() {
                 Scaffold(
                     bottomBar = {
                         CustomBottomNavigationItemView(
-                            homePageSelected = true,
-                            onSummaryButtonAction = {
+                            musicPageSelected = true,
+                            onVideoButtonAction = {
                             }
                         )
                     },
@@ -40,34 +43,26 @@ class HomeFragment : Fragment() {
     }
 
     @Composable
-    fun CustomBottomNavigationItemView(
+    private fun CustomBottomNavigationItemView(
         modifier: Modifier = Modifier,
-        homePageSelected: Boolean = false,
-        summaryPageSelected: Boolean = false,
-        onHomeButtonAction: () -> Unit = {},
-        onSummaryButtonAction: () -> Unit = {},
+        musicPageSelected: Boolean = false,
+        videoPageSelected: Boolean = false,
+        onMusicButtonAction: () -> Unit = {},
+        onVideoButtonAction: () -> Unit = {},
     ) {
         BottomNavigation(modifier = modifier) {
             BottomNavigationItem(
-                selected = homePageSelected,
-                onClick = { onHomeButtonAction() },
+                selected = musicPageSelected,
+                onClick = { onMusicButtonAction() },
                 icon = {
-                       Text("Home")
-//                    IconText(
-//                        text = stringResource(R.string.home),
-//                        imageVector = Icons.Filled.Home,
-//                    )
+                   Text(stringResource(R.string.music))
                 },
             )
             BottomNavigationItem(
-                selected = summaryPageSelected,
-                onClick = { onSummaryButtonAction() },
+                selected = videoPageSelected,
+                onClick = { onVideoButtonAction() },
                 icon = {
-                    Text("Library")
-//                    IconText(
-//                        text = stringResource(R.string.summary),
-//                        imageVector = Icons.Filled.Summarize,
-//                    )
+                    Text(stringResource(R.string.video))
                 },
             )
         }
