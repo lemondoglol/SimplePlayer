@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.lemondog.simpleplayer.view.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_videoFragment"
+            app:destination="@id/videoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/videoFragment"
+        android:name="com.lemondog.simpleplayer.view.videoscreen.VideoFragment"
+        android:label="VideoFragment" >
+        <action
+            android:id="@+id/action_videoFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
