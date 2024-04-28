@@ -97,6 +97,10 @@ dependencies {
     annotationProcessor "androidx.room:room-compiler:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
+
+    // Youtube
+    implementation 'com.google.android.gms:play-services-oss-licenses:17.0.0'
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.0'
 }
 
 // Allow references to generated code
